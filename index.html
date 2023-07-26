@@ -26,7 +26,7 @@
     </style>
 </head>
 <body>
-    <h1 style="text-align: center; text-decoration: underline;">Handson - Promise Async Await</h1>
+    <h1 style="text-align: center; text-decoration: underline;">Handson - Promise, Async & Await</h1>
     <hr>
     <h2>Q1. Write one example explaining how you can write a callback function.</h2>
     <h3 class="answer">Answer:</h3>
@@ -92,13 +92,16 @@
     </h2>
     <h3 class="answer inline">Output:</h3>
     <h2 class="inline"><span class="highlight">1(after 1sec) 2(after 2sec) 3(after 3sec) 4(after 4sec) 5(after 5sec) 6(after 6sec) 7(after 7sec)</span></h2>
-    <h3>Reason: 
+    <h3>Reason: <span class="highlight">Callback Hell</span>- It is a phenomenon of nesting multiple callbacks within a function and this results
+        in readability issues and code maintainability issues. It forms a triangle structure or pyramid like structure. The order of execution is 
+        stacked up and each callback waits for the previous callback resulting the phase Callback hell.<br><br>
+        Here, each <span class="highlight">setTimeout()</span> is nested into another and only when the first settimeout completes its execution, 
+        then only the next settimeout starts executing. It prints 1 after the delay of 1 sec and prints 2 after the delay of 2 secs and so on.
     </h3>
     <hr>
     <h2>Q3. Write the promise function to print numbers from 1 to 7, in which 1 should be printed after 1 sec, 2 should be printed after 2 sec,
          3 should be printed after 3 sec, and so on. 
     <pre>
-        Explain callback hell.
         Numbers
         1
         2
@@ -129,11 +132,13 @@
     </h2>
     <h3 class="answer inline">Output:</h3>
     <h2 class="inline"><span class="highlight">1(after 1sec) 2(after 2sec) 3(after 3sec) 4(after 4sec) 5(after 5sec) 6(after 6sec) 7(after 7sec)</span></h2>
-    <h3>Reason: 
+    <h3>Reason: <span class="highlight">Promises</span> are the solution for the callback hell. Promise is an object represents the completion 
+        or failure of the asynchronous operations and its resulting value. Here, <span class="highlight">demo(num, delay)</span> is called with 
+        number and delay as arguments and promise returns the fulfilled state to execute the next .then statements.  
     </h3>
     <hr>
     <h2>Q4. Create a promise function accepting an argument, if yes is passed to the function then it should go to resolved state and print Promise Resolved, and if nothing is passed 
-        then it should go to reject the state and catch the error and print Promise Rejected.
+        then it should go to reject state and catch the error and print Promise Rejected.
     </h2>
     <h3 class="answer">Answer:</h3>
     <h2 class="code"><pre>
@@ -147,7 +152,7 @@
                 }
             })
         }
-        demo("yes")
+        demo("yes") //passing "yes" as an argument to the function demo
             .then((result) => {
                 console.log(result);
             });
@@ -158,7 +163,10 @@
     </h2>
     <h3 class="answer inline">Output:</h3>
     <h2 class="inline"><span class="highlight">Promise Resolved</span></h2>
-    <h3>Reason: 
+    <h3>Reason: Here, <span class="highlight">demo(value)</span> is created which returns the <span class="highlight">Promise</span> and its state
+        whether its fulfilled or rejected. <span class="highlight">"yes"</span> is passed and condition is true to call the resolve() i.e. fulfilled
+        state. <span class="highlight">.then gets the result from resolve()</span> and prints <span class="highlight">Promise Resolved.</span> If 
+        suppose nothing is passed onto demo(), then result would print like Promise Rejected!.
     </h3>
     <hr>
     <h2>Q5. Create examples to explain callback function</h2>
@@ -204,10 +212,102 @@
     <h2>Q6. Create examples to explain callback hell function</h2>
     <h3 class="answer">Answer:</h3>
     <h3 class="answer">Example1:</h3>
+    <h2 class="code"><pre>
+        function a(callback) {
+            console.log("step1");
+            callback();
+        }
+        function a2(callback) {
+            console.log("step2");
+            callback();
+        }
+        function a3(callback) {
+            console.log("step3");
+            callback();
+        }
+        function a4(callback) {
+            console.log("step4");
+            callback();
+        }
+        function a5() {
+            console.log("step5");
+        }
+        a(() => {
+            a2(() => {
+                a3(() => {
+                    a4(() => {
+                        a5();
+                    })
+                })
+        
+            })
+        })
+    </pre>
+    </h2>
+    <h3 class="answer inline">Output:</h3>
+    <h2 class="inline"><span class="highlight">step1</span></h2><br>
+    &emsp;&emsp;&emsp;&emsp;<h2 class="inline marginz"><span class="highlight">step2</span></h2><br>
+    &emsp;&emsp;&emsp;&emsp;<h2 class="inline marginz"><span class="highlight">step3</span></h2><br>
+    &emsp;&emsp;&emsp;&emsp;<h2 class="inline marginz"><span class="highlight">step4</span></h2><br>
+    &emsp;&emsp;&emsp;&emsp;<h2 class="inline marginz"><span class="highlight">step5</span></h2>
+    <h3>Reason: 
+    </h3>
+    <h3 class="answer">Example2:</h3>
+    <h2 class="code"><pre>
+        setTimeout(() => {
+            console.log("1");
+            setTimeout(() => {
+                console.log("2");
+                setTimeout(() => {
+                    console.log("3");
+                    setTimeout(() => {
+                        console.log("4");
+                        setTimeout(() => {
+                            console.log("5");
+                            setTimeout(() => {
+                                console.log("6");
+                                setTimeout(() => {
+                                    console.log("7");
+                                }, 7000)
+                            }, 6000)
+                        }, 5000)
+                    }, 4000)
+                }, 3000)
+            }, 2000)
+        }, 1000)
+    </pre>
+    </h2>
+    <h3 class="answer inline">Output:</h3>
+    <h2 class="inline"><span class="highlight">1(after 1sec) 2(after 2sec) 3(after 3sec) 4(after 4sec) 5(after 5sec) 6(after 6sec) 7(after 7sec)</span></h2>
+    <h3>Reason: 
+    </h3>
     <hr>
     <h2>Q7. Create examples to explain promises function</h2>
     <h3 class="answer">Answer:</h3>
     <h3 class="answer">Example1:</h3>
+    <h2 class="code"><pre>
+        var ticketstatus = true;
+        var promise = new Promise(function (resolve, reject) {
+        if (ticketstatus) {
+            resolve("REady to go! Naa REady");
+        }
+        else {
+            reject("Error!!!!");
+        }
+
+        });
+        promise.then(function (result) {
+            console.log("done:", result);
+        },
+        function (result) {
+            console.log("error:", result);
+        });
+    </pre>
+    </h2>
+    <h3 class="answer inline">Output:</h3>
+    <h2 class="inline"><span class="highlight">1(after 1sec) 2(after 2sec) 3(after 3sec) 4(after 4sec) 5(after 5sec) 6(after 6sec) 7(after 7sec)</span></h2>
+    <h3>Reason: 
+    </h3>
     <hr>
     <h2>Q8. Create examples to explain async await function</h2>
     <h3 class="answer">Answer:</h3>
