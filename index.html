@@ -186,7 +186,10 @@
     <h3 class="answer inline">Output:</h3>
     <h2 class="inline"><span class="highlight">Hi Ram</span></h2><br>
     &emsp;&emsp;&emsp;&emsp;<h2 class="inline marginz"><span class="highlight">I am callback function</span></h2>
-    <h3>Reason: 
+    <h3>Reason: callback function is nothing but passing a function as an argument and it executes by calling the function inside the function
+        definition. Here, <span class="highlight">greet(string, function)</span> is a function passed with a string and a function as arguments
+        where, greet() first prints <span class="highlight">"String"</span> passed and calling the next function to execute. Then, <span class="
+        highlight">callMe()</span> function is called and executed, prints "Iam callback function".
     </h3>
     <h3 class="answer">Example2:</h3>
     <h2 class="code"><pre>
@@ -206,7 +209,9 @@
     <h3 class="answer inline">Output:</h3>
     <h2 class="inline"><span class="highlight">Hello World</span></h2><br>
     &emsp;&emsp;&emsp;&emsp;<h2 class="inline marginz"><span class="highlight">Hello Suraj</span></h2>
-    <h3>Reason: 
+    <h3>Reason: Here, greet() does the same job as the previous one, but <span class="highlight">settimeout()</span> asynchronous function is 
+        executed and is delays by 3 secs to print <span class="highlight">Hello world</span> first, then calls sayName() function to execute
+        and prints "Hello Suraj".
     </h3>
     <hr>
     <h2>Q6. Create examples to explain callback hell function</h2>
