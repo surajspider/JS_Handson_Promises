@@ -313,8 +313,35 @@
     </pre>
     </h2>
     <h3 class="answer inline">Output:</h3>
-    <h2 class="inline"><span class="highlight">1(after 1sec) 2(after 2sec) 3(after 3sec) 4(after 4sec) 5(after 5sec) 6(after 6sec) 7(after 7sec)</span></h2>
-    <h3>Reason: 
+    <h2 class="inline"><span class="highlight">done:REady to go! Naa REady</span></h2>
+    <h3>Reason: Firstly, declaring a variable <span class="highlight">ticketstatus=true</span>. variable promise holds the <span class="highlight">
+        Promise() function</span> which checks the condition status "true/false". when true, resolve() is called and executes .then  and 
+        prints the result.
+    </h3>
+    <h3 class="answer">Example2:</h3>
+    <h2 class="code"><pre>
+        function demo(num, delay) {
+            return new Promise((res, rej) => {
+                setTimeout(() => {
+                    console.log(num);
+                    res();
+                }, delay);
+            })
+        }
+        let pro = Promise.resolve();
+        for (let i = 1; i <= 5; i++) {
+            pro = pro.then(() => demo(i, i * 1000));
+        }
+    </pre>
+    </h2>
+    <h3 class="answer inline">Output:</h3><br>
+    &emsp;&emsp;&emsp;&emsp;<h2 class="inline marginz"><span class="highlight">1</span></h2><br>
+    &emsp;&emsp;&emsp;&emsp;<h2 class="inline marginz"><span class="highlight">2</span></h2><br>
+    &emsp;&emsp;&emsp;&emsp;<h2 class="inline marginz"><span class="highlight">3</span></h2><br>
+    &emsp;&emsp;&emsp;&emsp;<h2 class="inline marginz"><span class="highlight">4</span></h2><br>
+    &emsp;&emsp;&emsp;&emsp;<h2 class="inline marginz"><span class="highlight">5</span></h2>
+    <h3>Reason: Create a variable pro having the resolve state of promise. Then, run loop from 1 to 5 incrementing i value and delay passing
+        values into demo() and invoking pro each time. so, it prints 1 - 5 after x secs with incrementing on each iteration.
     </h3>
     <hr>
     <h2>Q8. Create examples to explain async await function</h2>
