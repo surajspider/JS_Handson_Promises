@@ -65,7 +65,7 @@
         7
     </pre>
     </h2>
-    <h3 class="answer">Answer:</h3>
+    <h3 class="answer" id="answer2">Answer:</h3>
     <h2 class="code"><pre>
         setTimeout(() => {
             console.log("1");
@@ -255,7 +255,10 @@
     &emsp;&emsp;&emsp;&emsp;<h2 class="inline marginz"><span class="highlight">step3</span></h2><br>
     &emsp;&emsp;&emsp;&emsp;<h2 class="inline marginz"><span class="highlight">step4</span></h2><br>
     &emsp;&emsp;&emsp;&emsp;<h2 class="inline marginz"><span class="highlight">step5</span></h2>
-    <h3>Reason: 
+    <h3>Reason: with the help of <span class="highlight">Arrow function</span> nesting of function call takes place to implement callback hell. 
+        a() is passed with a2(), a2() is passed with a3() and goes on.. Dependency of each function is related to the previous one which 
+        creates this triangular problem in readability and maintainability. Thus, it prints <span class="highlight">step1->step2->step3->step4->
+        step5.</span> 
     </h3>
     <h3 class="answer">Example2:</h3>
     <h2 class="code"><pre>
@@ -284,7 +287,7 @@
     </h2>
     <h3 class="answer inline">Output:</h3>
     <h2 class="inline"><span class="highlight">1(after 1sec) 2(after 2sec) 3(after 3sec) 4(after 4sec) 5(after 5sec) 6(after 6sec) 7(after 7sec)</span></h2>
-    <h3>Reason: 
+    <h3>Reason: <a href="#answer2">Refer explanation of question 2</a>
     </h3>
     <hr>
     <h2>Q7. Create examples to explain promises function</h2>
