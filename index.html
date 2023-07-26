@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handson - Promises - JS</title>
+    <style>
+        .code{
+            font-weight: bolder;
+            color:green;
+        }
+        .answer{
+            text-decoration: underline;
+        }
+        .highlight{
+            font-style: italic;
+            background-color: rgb(161, 240, 161);
+        }
+        .inline{
+            display:inline-block;
+            width:fit-content;
+        }
+        .marginz{
+            margin:0;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center; text-decoration: underline;">Handson - Promise Async Await</h1>
+    <hr>
+    <h2>Q1. Write one example explaining how you can write a callback function.</h2>
+    <h3 class="answer">Answer:</h3>
+    <h2 class="code"><pre>
+        function do_homework(callb) {
+            setTimeout(() => {
+                console.log("do homework");
+                callb();
+            }, 1000);
+        
+        }
+        function copy_hw() {
+            console.log("copy hw");
+        }
+        do_homework(copy_hw);
+    </pre></h2>
+    <h3 class="answer inline">Output:</h3>
+    <h2 class="inline"><span class="highlight">do homework, copy hw</span></h2>
+    <h3>Reason: <span class="highlight">The function which is passed as an argument inside of another function is called callback function.</span>
+        Here, <span class="highlight">do_homework()</span> function is called with an argument as another function <span class="highlight">copy_hw().</span>
+        Then, it is copied to a parameter in the do_homework() as <span class="highlight">callb</span>. After 1 sec, setTimeout() starts executing and 
+        prints <span class="highlight">do homework</span> first. Then, callb() is called, and then <span class="highlight">copy hw</span> is printed!
+    </h3>
+    <hr>
+    <h2>Q2. Write a callback function to print numbers from 1 to 7, in which 1 should be printed after 1 sec, 2 should be printed after 2 sec, 
+        3 should be printed after 3 sec, and so on. 
+    <pre>
+        Explain callback hell.
+        Numbers
+        1
+        2
+        3
+        4
+        5
+        6
+        7
+    </pre>
+    </h2>
+    <h3 class="answer">Answer:</h3>
+    <h2 class="code"><pre>
+        setTimeout(() => {
+            console.log("1");
+            setTimeout(() => {
+                console.log("2");
+                setTimeout(() => {
+                    console.log("3");
+                    setTimeout(() => {
+                        console.log("4");
+                        setTimeout(() => {
+                            console.log("5");
+                            setTimeout(() => {
+                                console.log("6");
+                                setTimeout(() => {
+                                    console.log("7");
+                                }, 7000)
+                            }, 6000)
+                        }, 5000)
+                    }, 4000)
+                }, 3000)
+            }, 2000)
+        }, 1000)
+    </pre>
+    </h2>
+    <h3 class="answer inline">Output:</h3>
+    <h2 class="inline"><span class="highlight">1(after 1sec) 2(after 2sec) 3(after 3sec) 4(after 4sec) 5(after 5sec) 6(after 6sec) 7(after 7sec)</span></h2>
+    <h3>Reason: 
+    </h3>
+    <hr>
+    <h2>Q3. Write the promise function to print numbers from 1 to 7, in which 1 should be printed after 1 sec, 2 should be printed after 2 sec,
+         3 should be printed after 3 sec, and so on. 
+    <pre>
+        Explain callback hell.
+        Numbers
+        1
+        2
+        3
+        4
+        5
+        6
+        7
+    </pre>  
+    </h2>
+    <h3 class="answer">Answer:</h3>
+    <h2 class="code"><pre>
+        function demo(num, delay) {
+            return new Promise((res, rej) => {
+                setTimeout(() => {
+                    console.log(num);
+                    res();
+                }, delay);
+            })
+        }
+        demo(1, 1 * 1000).then(() => demo(2, 2 * 1000))
+            .then(() => demo(3, 3 * 1000))
+            .then(() => demo(4, 4 * 1000))
+            .then(() => demo(5, 5 * 1000))
+            .then(() => demo(6, 6 * 1000))
+            .then(() => demo(7, 7 * 1000))
+    </pre>
+    </h2>
+    <h3 class="answer inline">Output:</h3>
+    <h2 class="inline"><span class="highlight">1(after 1sec) 2(after 2sec) 3(after 3sec) 4(after 4sec) 5(after 5sec) 6(after 6sec) 7(after 7sec)</span></h2>
+    <h3>Reason: 
+    </h3>
+    <hr>
+    <h2>Q4. Create a promise function accepting an argument, if yes is passed to the function then it should go to resolved state and print Promise Resolved, and if nothing is passed 
+        then it should go to reject the state and catch the error and print Promise Rejected.
+    </h2>
+    <h3 class="answer">Answer:</h3>
+    <h2 class="code"><pre>
+        function demo(value) {
+            return new Promise((resolve, reject) => {
+                if (value == "yes") {
+                    resolve("Promise Resolved");
+                }
+                else {
+                    reject("Promise Rejected");
+                }
+            })
+        }
+        demo("yes")
+            .then((result) => {
+                console.log(result);
+            });
+            .catch((result) => {
+                console.log(result);
+            });
+    </pre>
+    </h2>
+    <h3 class="answer inline">Output:</h3>
+    <h2 class="inline"><span class="highlight">Promise Resolved</span></h2>
+    <h3>Reason: 
+    </h3>
+    <hr>
+    <h2>Q5. Create examples to explain callback function</h2>
+    <h3 class="answer">Answer:</h3>
+    <h3 class="answer">Example1:</h3>
+    <h2 class="code"><pre>
+        function greet(name, callback) {
+            console.log('Hi' + ' ' + name);
+            callback();
+        }
+        function callMe() {
+            console.log('I am callback function');
+        }
+        greet('Ram', callMe);
+    </pre>
+    </h2>
+    <h3 class="answer inline">Output:</h3>
+    <h2 class="inline"><span class="highlight">Hi Ram</span></h2><br>
+    &emsp;&emsp;&emsp;&emsp;<h2 class="inline marginz"><span class="highlight">I am callback function</span></h2>
+    <h3>Reason: 
+    </h3>
+    <h3 class="answer">Example2:</h3>
+    <h2 class="code"><pre>
+        function greet(name, myFunction) {
+            setTimeout(() => {
+                console.log('Hello world');
+                myFunction(name);
+            }, 3000);
+        
+        }
+        function sayName(name) {
+            console.log('Hello' + ' ' + name);
+        }
+        greet("Suraj", sayName);
+    </pre>
+    </h2>
+    <h3 class="answer inline">Output:</h3>
+    <h2 class="inline"><span class="highlight">Hello World</span></h2><br>
+    &emsp;&emsp;&emsp;&emsp;<h2 class="inline marginz"><span class="highlight">Hello Suraj</span></h2>
+    <h3>Reason: 
+    </h3>
+    <hr>
+    <h2>Q6. Create examples to explain callback hell function</h2>
+    <h3 class="answer">Answer:</h3>
+    <h3 class="answer">Example1:</h3>
+    <hr>
+    <h2>Q7. Create examples to explain promises function</h2>
+    <h3 class="answer">Answer:</h3>
+    <h3 class="answer">Example1:</h3>
+    <hr>
+    <h2>Q8. Create examples to explain async await function</h2>
+    <h3 class="answer">Answer:</h3>
+    <h3 class="answer">Example1:</h3>
+    <hr>
+    <h2>Q9. Create examples to explain promise.all function</h2>
+    <h3 class="answer">Answer:</h3>
+    <h3 class="answer">Example1:</h3>
+    <hr>
+</body>
+</html>
