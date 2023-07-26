@@ -347,6 +347,54 @@
     <h2>Q8. Create examples to explain async await function</h2>
     <h3 class="answer">Answer:</h3>
     <h3 class="answer">Example1:</h3>
+    <h2 class="code"><pre>
+        var demo = new Promise((res, rej) => {
+            var a = 10;
+            var b = 10;
+            if (a == b) {
+                res("Fulfilled!");
+            }
+        });
+        async function sample() {
+            let a = await demo;
+            console.log(a);
+            console.log("Welcome back");
+        }
+        sample();
+    </pre>
+    </h2>
+    <h3 class="answer inline">Output: </h3>
+    <h2 class="inline marginz"><span class="highlight">Fulfilled!</span></h2><br>
+    &emsp;&emsp;&emsp;&emsp;<h2 class="inline marginz"><span class="highlight">Welcome back</span></h2>
+    <h3>Reason: <span class="highlight">Await keyword comes only with Async function.</span> await is written inside a async function and it 
+        essentially waits for a promise. The Primary work of a async function is <span class="highlight">to stop the execution of the function 
+        until a promise is either fulfilled or rejected.</span> The function will resume after the promise is settled. so, <span class="highlight">
+        let a</span> has contain the value promise returned. so, it prints a and then console the string.
+    </h3>
+    <h3 class="answer">Example2:</h3>
+    <h2 class="code"><pre>
+        function demo(fcall) {
+            return new Promise(resolve => {
+                console.log("Fetching data....");
+                setTimeout(() => {
+                    resolve(fcall());
+                }, 2000);
+            });
+        }
+        function names() {
+            console.log("Hello!");
+            return "Ram";
+        }
+        async function demo2() {
+            console.log("Welcome!");
+            var pro = await demo(names);
+            console.log(pro);
+            console.log("Fulfilled!");
+        }
+        demo2();
+    </pre>
+    </h2>
+    <h3 class="answer inline">Output: </h3>
     <hr>
     <h2>Q9. Create examples to explain promise.all function</h2>
     <h3 class="answer">Answer:</h3>
