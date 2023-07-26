@@ -436,11 +436,36 @@
         Promise.all(pro)
             .then((a) => {
                 console.log(a)
-            })
-            .catch((e) => console.log(e));
+            });
     </pre>
     </h2>
-    <h3 class="answer inline">Output: </h3><br>
+    <h3 class="answer inline">Output: </h3>
+    <h2 class="inline marginz"><span class="highlight">[ 'resolve1', 'resolve2', 'resolve3' ]</span></h2><br>
+    <h3>Reason: Basically, <span class="highlight">Promise.all takes iterable of promises as input and returns a single promise.</span>
+        This gets settled only when <span class="highlight">All of the promises are fulfilled or anyone of the promise got rejected.</span>
+        When, all are fulfilled, then it returns fulfilled or anyone got rejected, it returns rejected on the whole.<br><br>
+        Here, pro variable is initialized with an array, each element calling each function in it. Promise.all collectively executes all 
+        promises and then prints in an array if all the promises are fulfilled. <span class="highlight">demo3() takes 5 secs delay</span>. 
+        So, all the promises.all are fulfilled after 5 secs and prints.
+    </h3>
+    <h3 class="answer">Example2:</h3>
+    <h2 class="code"><pre>
+        const promise1 = Promise.resolve(3);
+        const promise2 = 42;
+        const promise3 = new Promise((resolve, reject) => {
+            setTimeout(resolve, 1000, 'foo');
+        });
+        Promise.all([promise1, promise2, promise3]).then((values) => {
+            console.log(values);
+        });
+    </pre>
+    </h2>
+    <h3 class="answer inline">Output: </h3>
+    <h2 class="inline marginz"><span class="highlight">[ 3, 42, 'foo' ]</span></h2><br>
+    <h3>Reason: Promise1, Promise2, Promise3 is initialized with values and promises. <span class="highlight">Promise3 has a settimeout
+        function which will execute after 1 sec.</span> So, all the remaining two promises will wait for the promise3 to get fulfilled
+        and all the promises for fulfilled and prints their values in an array. 
+    </h3>
     <hr>
 </body>
 </html>
